@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zf9j!tn%1d4r=7@4t+l^ojgitm+_hk(deo!8c=n@h@#@1fkl04'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://task-manager-zic5.onrender.com"]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Frontend rodando com Vite
@@ -99,16 +100,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'task_manager_db',
-        'USER': 'task_manager_user',
-        'PASSWORD': 'pedro201',
-        'HOST': 'localhost',  # Ou o IP do seu servidor PostgreSQL
-        'PORT': '5432',
-    }
+    "default": dj_database_url.config(default="postgresql://task_manager_db_4tg4_user:HPNg1XJL3c7WpTSHQXFNzNcIKUpMhdE7@dpg-cumgfplds78s739v7rk0-a.oregon-postgres.render.com/task_manager_db_4tg4")
 }
+
 
 
 REST_FRAMEWORK = {
