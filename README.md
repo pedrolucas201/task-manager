@@ -1,50 +1,114 @@
-# React + TypeScript + Vite
+# Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Visão Geral
 
-Currently, two official plugins are available:
+Este é um sistema de gerenciamento de tarefas (Task Manager) desenvolvido com **Django Rest Framework (DRF) no backend** e **React com TypeScript no frontend**. Ele permite que os usuários **cadastrem, editem e excluam tarefas**, além de fornecer **autenticação JWT para segurança**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+### Backend:
+- Django 4.x
+- Django Rest Framework (DRF)
+- Django SimpleJWT (para autenticação)
+- PostgreSQL
+- Psycopg (driver para PostgreSQL)
+- CORS Headers (para permitir comunicação entre frontend e backend)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Frontend:
+- React.js com Vite
+- TypeScript
+- Tailwind CSS (para estilização)
+- React Router DOM (para navegação)
+- Axios (para requisições HTTP)
 
-- Configure the top-level `parserOptions` property like this:
+## 📜 Funcionalidades
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Autenticação JWT (Login e Registro)
+- Criar, Listar, Editar e Excluir Tarefas
+- Proteção de Rotas para usuários autenticados
+- Modal para edição de tarefas
+- Controle de permissões e segurança
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚀 Como Rodar o Projeto
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 🔧 1. Configuração do Backend
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/seu-usuario/task-manager.git
+   cd task-manager/backend
+   ```
+2. Crie um ambiente virtual e ative:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   venv\Scripts\activate  # Windows
+   ```
+3. Instale as dependências:
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. Configure o banco de dados (PostgreSQL) no `settings.py`.
+5. Execute as migrações:
+   ```sh
+   python manage.py migrate
+   ```
+6. Crie um superusuário (opcional):
+   ```sh
+   python manage.py createsuperuser
+   ```
+7. Inicie o servidor:
+   ```sh
+   python manage.py runserver
+   ```
+
+### 🌍 2. Configuração do Frontend
+
+1. Navegue até a pasta do frontend:
+   ```sh
+   cd ../frontend
+   ```
+2. Instale as dependências:
+   ```sh
+   npm install
+   ```
+3. Inicie o servidor de desenvolvimento:
+   ```sh
+   npm run dev
+   ```
+
+## 🔑 Autenticação e Segurança
+
+- O backend utiliza **JWT (JSON Web Token)** para autenticação.
+- O login retorna **dois tokens (access e refresh)**.
+- O frontend armazena o token e usa nas requisições para acessar as rotas protegidas.
+
+## 📌 Endpoints da API
+
+| Método | Rota                | Descrição                        |
+|--------|---------------------|--------------------------------|
+| POST   | `/api/register/`     | Cria um novo usuário           |
+| POST   | `/api/token/`        | Gera o token JWT (Login)       |
+| POST   | `/api/token/refresh/` | Atualiza o token de acesso     |
+| GET    | `/api/tasks/`        | Lista todas as tarefas         |
+| POST   | `/api/tasks/`        | Cria uma nova tarefa           |
+| PUT    | `/api/tasks/{id}/`   | Edita uma tarefa existente     |
+| DELETE | `/api/tasks/{id}/`   | Exclui uma tarefa              |
+
+## 🎨 Interface do Usuário
+
+A interface do usuário possui:
+
+- **Tela de Login** e **Registro**
+- **Página de tarefas protegida** por autenticação
+- **Botão de logout**
+- **Modal para edição de tarefas**
+- **Feedbacks para erros de autenticação**
+
+## 🏁 Conclusão
+
+Este projeto foi desenvolvido para **praticar conceitos de autenticação, backend com Django e frontend com React**. O objetivo foi criar um sistema funcional e seguro para gerenciar tarefas! 🚀
+
+## 📜 Licença
+
+Este projeto está sob a licença MIT.
