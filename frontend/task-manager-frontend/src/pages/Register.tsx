@@ -1,7 +1,6 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -10,7 +9,6 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = async (e: React.FormEvent) => {
