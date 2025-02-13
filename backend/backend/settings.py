@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["https://task-manager-zic5.onrender.com"]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Frontend rodando com Vite
     "http://127.0.0.1:5173",
+    "https://task-manager-zic5.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
