@@ -29,12 +29,21 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["https://task-manager-zic5.onrender.com"]
 
+# Permite requisições do Vercel
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Frontend rodando com Vite
-    "http://127.0.0.1:5173",
-    "https://task-manager-zic5.onrender.com",
+    "https://task-manager-g3qet586j-pedrolucas201s-projects.vercel.app",  # 🔥 Substitua pelo seu domínio Vercel
 ]
 
+# Permite todos os métodos (GET, POST, PUT, DELETE)
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+
+# Permite que o frontend envie os headers necessários
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "Authorization",
+    "Content-Type",
+]
+
+# Permite que as credenciais (tokens) sejam enviadas
 CORS_ALLOW_CREDENTIALS = True
 
 SIMPLE_JWT = {
